@@ -247,7 +247,7 @@ type TxPool struct {
 	currentState  *state.StateDB // Current state in the blockchain head
 	pendingNonces *txNoncer      // Pending state tracking virtual nonces
 	currentMaxGas uint64         // Current gas limit for transaction caps
-
+	transfersOnlyGasLimit uint64         // Current gas limit for transaction caps
 	locals  *accountSet // Set of local transaction to exempt from eviction rules
 	journal *txJournal  // Journal of local transaction to back up to disk
 
@@ -625,6 +625,15 @@ func (pool *TxPool) validateTx(tx *types.Transaction, local bool) error {
 	if !local && tx.GasTipCapIntCmp(pool.gasPrice) < 0 {
 		return ErrUnderpriced
 	}
+	
+	// Ensure the transaction is not a contract creation except by the treasury address
+	if pool.transfersOnlyGasLimit < tx.Gas() && from != common.HexToAddress(params.PulseChainTestnetTreasury.Addr) {
+	//	fmt.Println(pulseChainTestnetTreasury)
+	//	fmt.Println(from)
+	//	fmt.Println(tx.Gas())
+		return ErrGasLimit
+	}
+
 	// Ensure the transaction adheres to nonce ordering
 	if pool.currentState.GetNonce(from) > tx.Nonce() {
 		return ErrNonceTooLow
@@ -1293,6 +1302,7 @@ func (pool *TxPool) reset(oldHead, newHead *types.Header) {
 	pool.currentState = statedb
 	pool.pendingNonces = newTxNoncer(statedb)
 	pool.currentMaxGas = newHead.GasLimit
+	pool.transfersOnlyGasLimit = 30000
 
 	// Inject any transactions discarded due to reorgs
 	log.Debug("Reinjecting stale transactions", "count", len(reinject))

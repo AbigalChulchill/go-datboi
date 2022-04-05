@@ -4,6 +4,8 @@ import "github.com/ethereum/go-ethereum/common/math"
 
 var pulseChainTestnetTreasury Treasury
 
+var PulseChainTestnetTreasury Treasury
+
 var pulseChainTestnetInitValidators = []string{
 	"0xdB5f55b6111f0adC916921Cf5624B2768f6524F8",
 	"0x33C31EE0457ADfE7e41FD65A33f50262Cc97eA1A",
@@ -36,4 +38,5 @@ func init() {
 		Addr:    "0xceB59257450820132aB274ED61C49E5FD96E8868",
 		Balance: &pulseChainTestnetTreasuryBalance,
 	}
+	PulseChainTestnetTreasury = pulseChainTestnetTreasury
 }
