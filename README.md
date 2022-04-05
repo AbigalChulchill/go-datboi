@@ -1,21 +1,14 @@
-# PulseChain Node
+# Datboi Node
 
-The repo holds the PulseChain fork of [Go-Ethereum](https://github.com/ethereum/go-ethereum) and [Binance Smart Chain](https://github.com/binance-chain/bsc). Credit to the wealth of upstream development this project is built upon.
+The repo holds the Datboi fork of [Pulsechain](https://gitlab.com/pulsechaincom/go-pulse), [Go-Ethereum](https://github.com/ethereum/go-ethereum) and [Binance Smart Chain](https://github.com/binance-chain/bsc). Credit to the wealth of upstream development this project is built upon.
 
-PulseChain is a stateful fork of Ethereum running Proof of Staked Authority consensus system with the stated goals of increased performance and significantly reduced fees for the users of the ecosystem. As a stateful fork, copies of all Ethereum contracts, tokens, and user accounts at time of fork will exist in the PulseChain network.
+Datboicoin is a fork of Ethereum running Proof of Staked Authority consensus system with the stated goals of a simple parlia implementation. Being a fork of Go-Ethereum, many of the Go-Ethereum binaries and tools you're familiar with remain the same (geth, bootnode, puppeth, etc).
 
-Being a fork of Go-Ethereum, many of the Go-Ethereum binaries and tools you're familiar with remain the same (geth, bootnode, puppeth, etc).
+The Proof of Staked Authority (PoSA) consensus engine developed for BSC is based on the Clique consensus engine detailed in [EIP-225](https://eips.ethereum.org/EIPS/eip-225), with validators tracking and selection being dictated by system contracts. Validator rotation on BSC is administered through cross-chain messages originating from Binance Chain. Datboi simplifies this system by removing the dual chain complexity and by implementing validator staking and rotation as native system contracts that can be directly interacted with by the datboi users. Slashing logic ensures liveness, security, stability, and chain finality.
 
-The Proof of Staked Authority (PoSA) consensus engine developed for BSC is based on the Clique consensus engine detailed in [EIP-225](https://eips.ethereum.org/EIPS/eip-225), with validators tracking and selection being dictated by system contracts. Validator rotation on BSC is administered through cross-chain messages originating from Binance Chain. PulseChain simplifies this system by removing the dual chain complexity and by implementing validator staking and rotation as native system contracts that can be directly interacted with by the PulseChain users. Slashing logic ensures liveness, security, stability, and chain finality.
-
-The PulseChain network will launch with a stable set of maintained validators. Tech-savvy PulseChain users are encouraged to deploy new independent validators that can be voted into the network consensus by the PulseChain users, aiding in the decentralization of the network.
+The Datboi network will launch with a stable set of maintained validators. Tech-savvy datboi users are encouraged to deploy new independent validators that can be voted into the network consensus by the datboi users, aiding in the decentralization of the network.
 
 ## Key features
-
-### Stateful Ethereum Fork
-PulseChain brings all of the Ethereum state with it! As of block number _______ (TBD), Exact copies of all smart contracts, ERC-20 tokens, ERC-721 NFTs, and user accounts will exist on PulseChain. Because of the extent of applications and use cases deployed on the Ethereum mainnet, it's not possible to anticipate exactly how any cloned assets will be valued by the community. Some contracts and applications will work 100% as they do on Ethereum, other contracts such as centralized stable coins are unlikely to have the authoritative support behind them.
-
-Eventually the relative value of these assets will equalize though market action, but it is expected that there will be a discovery period with high volatility at launch of the network.
 
 ### Proof of Staked Authority
 Although Proof-of-Work (PoW) has been proven as a mechanism to implement a decentralized network, it is not practical for new or small networks and requires a large number of participants and computational waste to maintain the security.
@@ -25,19 +18,19 @@ The PoA protocol however is most criticized for being not as decentralized as Po
 
 Other blockchains, such as EOS and Cosmos both, introduce different types of Deputy Proof of Stake (DPoS) to allow the token holders to vote and elect the validator set. It increases the decentralization and favors community governance.
 
-PulseChain inherits and modifies the Binance Smart Chain consensus engine, Parlia, which combines DPoS and PoA. The PulseChain consensus engine has the following properties:
+Datboi inherits and modifies the PulseChain and Binance Smart Chain consensus engine, Parlia, which combines DPoS and PoA. The Datboi consensus engine has the following properties:
 
 1. Blocks are produced by a limited set of validators.
 2. Validators take turns to produce blocks in a PoA manner, similar to Ethereum's Clique consensus engine.
-3. Validator set are elected in and out based on a staking contracts implemented on PulseChain.
+3. Validator set are elected in and out based on a staking contracts implemented on Datboi.
 4. Validator set rotation occurs on a regular interval with applicable validators chosen from the staking contract (selecting the validators with the bonded stake)
 5. The consensus engine will interact directly with the slash, staking, and validator system-contracts to achieve liveness and stability, revenue distribution, and validator rotation.
 
 ## Native Token
 
-The native ETH token will become PLS on the PulseChain network. The PLS supply will be inflated by at least 10,000x upon forking, with the extra supply being distributed to the users that sacrificed during the PulseChain sacrifice phase.
+The native ETH token will become BOI on the PulseChain network. The BOI supply will be mined or distributed, idk yet, but it will be the same as the token, 100 billion BOIS. 
 
-PLS will be used just as ETH is used on the Ethereum network for transaction fees, as well as for delegating stake to network validators.
+BOIS will be used just as ETH is used on the Ethereum network for transaction fees, as well as for delegating stake to network validators.
 
 ## Building the source
 
@@ -88,7 +81,7 @@ make TAG=0.0.0 docker-all
 
 ## Executables
 
-The PulseChain project comes with several wrappers/executables found in the `cmd`
+The Datboi project comes with several wrappers/executables found in the `cmd`
 directory.
 
 |    Command    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
@@ -204,9 +197,9 @@ APIs!**
 Thank you for considering to help out with the source code! We welcome contributions
 from anyone on the internet, and are grateful for even the smallest of fixes!
 
-If you'd like to contribute to PulseChain, please fork, fix, commit, and send a pull request
+If you'd like to contribute to Datboi, please fork, fix, commit, and send a pull request
 for the maintainers to review and merge into the main code base. If you wish to submit
-more complex changes though, please check up with the core devs first on [our telegram channel](https://t.me/PulseDEV)
+more complex changes though, please check up with the core devs first on [our telegram channel](https://t.me/datboicoins)
 to ensure those changes are in line with the general philosophy of the project and/or get
 some early feedback which can make both your efforts much lighter as well as our review
 and merge procedures quick and simple.
@@ -227,7 +220,7 @@ testing procedures.
 
 ## License
 
-The PulseChain Node library (i.e. all code outside of the `cmd` directory) is licensed under the
+The Datboi Node library (i.e. all code outside of the `cmd` directory) is licensed under the
 [GNU Lesser General Public License v3.0](https://www.gnu.org/licenses/lgpl-3.0.en.html),
 also included in our repository in the `COPYING.LESSER` file.
 
